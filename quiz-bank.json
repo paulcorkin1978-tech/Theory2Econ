@@ -1,0 +1,244 @@
+[
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for apples",
+    "yLabel": "Price ($kg)",
+    "xLabel": "Quantity",
+    "color": "#00ff11",
+    "vUnit": 1,
+    "hUnit": 5,
+    "startFP": 5,
+    "startCS": 0,
+    "showEqLines": true,
+    "ansFP": 4,
+    "ansCS": 0,
+    "questionText": "Consider the demand for apples. Suppose that the price of apples falls to $4 per kg. What will happen to the demand for apples?",
+    "answers": [
+      "There will be a contraction in demand",
+      "There will be an expansion in demand",
+      "There will be an increase in demand",
+      "There will be a decrease in demand"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for lemonade",
+    "yLabel": "Price ($)",
+    "xLabel": "Quantity",
+    "color": "#fbff00",
+    "vUnit": 0.5,
+    "hUnit": 10,
+    "startFP": 4,
+    "startCS": 0,
+    "showEqLines": true,
+    "ansFP": 6,
+    "ansCS": 0,
+    "questionText": "Consider the demand for lemonade. Suppose that the price of lemonade increased from $2 per can to $3 per can. What would happen to the demand for lemonade?",
+    "answers": [
+      "There will be a decrease in demand from 60 cans to 40 cans",
+      "There will be an increase in demand from 40 cans to 60 cans",
+      "There will be a contraction in demand from 60 cans to 40 cans",
+      "There will be an expansion in demand from 40 cans to 60 cans"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for cars",
+    "yLabel": "Price (thousands $)",
+    "xLabel": "Quantity",
+    "color": "#0a0a0a",
+    "vUnit": 5000,
+    "hUnit": 100,
+    "startFP": 5,
+    "startCS": 0,
+    "showEqLines": false,
+    "ansFP": 5,
+    "ansCS": 1,
+    "questionText": "Consider the demand curve for cars. Suppose that due to strong economic growth there is an increase in income levels amongst the population. What would happen to the demand for cars?",
+    "answers": [
+      "There would be an increase in demand for cars",
+      "There would be a decrease in demand for cars",
+      "There would be an expansion in the demand for cars",
+      "There would be a contraction in the demand for cars"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for iPads",
+    "yLabel": "Price ($)",
+    "xLabel": "Quantity",
+    "color": "#cfcece",
+    "vUnit": 100,
+    "hUnit": 30,
+    "startFP": 5,
+    "startCS": 0,
+    "showEqLines": true,
+    "ansFP": 5,
+    "ansCS": -1,
+    "questionText": "Consider the demand for curve for iPads. Suppose Apple announces that the price of iPads will be reduced by 20% in one month’s time. What will happen to the demand for iPads today?",
+    "answers": [
+      "There will be an increase in demand for iPads",
+      "There will be a decrease in demand for iPads",
+      "There will be an expansion in demand for iPads",
+      "There will be a contraction in demand for iPads"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for iPads",
+    "yLabel": "Price ($)",
+    "xLabel": "Quantity",
+    "color": "#cfcece",
+    "vUnit": 100,
+    "hUnit": 30,
+    "startFP": 5,
+    "startCS": 0,
+    "showEqLines": true,
+    "ansFP": 4,
+    "ansCS": 0,
+    "questionText": "Consider the same demand curve for iPads. One month has passed and the price of iPads falls by 10%. What happens to the demand for iPads?",
+    "answers": [
+      "There will be an increase in demand for iPads",
+      "There will be a decrease in demand for iPads",
+      "There will be an expansion in demand for iPads",
+      "There will be a contraction in demand for iPads"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for iPads",
+    "yLabel": "Price ($)",
+    "xLabel": "Quantity",
+    "color": "#0435fb",
+    "vUnit": 3,
+    "hUnit": 20,
+    "startFP": 5,
+    "startCS": 0,
+    "showEqLines": false,
+    "ansFP": 5,
+    "ansCS": -1,
+    "questionText": "A recession causes rising unemployment and a 5% reduction in the average income of workers in an economy. How would this affect the demand for cinema tickets?",
+    "answers": [
+      "There will be a decrease in demand for cinema tickets by 5%",
+      "There will be an unknown decrease in demand for cinema tickets",
+      "There will be an increase in the demand for cinema tickets by 5%",
+      "There will be an unknown increase in demand for cinema tickets"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for the children's toy",
+    "yLabel": "Price ($)",
+    "xLabel": "Quantity",
+    "color": "#fb04b9",
+    "vUnit": 8,
+    "hUnit": 25,
+    "startFP": 6,
+    "startCS": 0,
+    "showEqLines": true,
+    "ansFP": 6,
+    "ansCS": 1,
+    "questionText": "A viral marketing campaign on social media for a children’s toy makes it the ‘must have’ Christmas present. How will this affect demand for the toy?",
+    "answers": [
+      "There will be an increase in demand for the toy",
+      "There will be a decrease in demand for the toy",
+      "There will be an expansion in demand for the toy",
+      "There will be a contraction in demand for the toy"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "type": "table",
+    "title": "",
+    "headers": [
+      "Year",
+      "Price of Good A $",
+      "Price of Good B $"
+    ],
+    "rows": [
+      [
+        "1",
+        "100",
+        "100"
+      ],
+      [
+        "2",
+        "100",
+        "95"
+      ]
+    ],
+    "questionText": "Consider the data table below showing price changes for two substitute goods. Given the data, what is likely to happen to the demand for Good A in year 2?",
+    "answers": [
+      "There will be an increase in demand for Good A",
+      "There will be a decrease in demand for Good A",
+      "There will be a contraction in demand for Good A",
+      "There will be no change in demand for Good A"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "type": "table",
+    "title": "",
+    "headers": [
+      "Year",
+      "Price of Good A $",
+      "Price of Good B $"
+    ],
+    "rows": [
+      [
+        "1",
+        "100",
+        "100"
+      ],
+      [
+        "2",
+        "100",
+        "95"
+      ]
+    ],
+    "questionText": "Consider the same data table below showing price changes for two substitute goods. Given the data, what is likely to happen to the demand for Good B in year 2?",
+    "answers": [
+      "There will be an increase in demand for Good B",
+      "There will be a decrease in demand for Good B",
+      "There will be an expansion in demand for Good B",
+      "There will be a contraction in demand for Good B"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "type": "sc",
+    "curve": "demand",
+    "title": "Demand for Coca-Cola",
+    "yLabel": "Price ($)",
+    "xLabel": "Quantity",
+    "color": "#fb1d04",
+    "vUnit": 0.5,
+    "hUnit": 25,
+    "startFP": 4,
+    "startCS": 1,
+    "showEqLines": true,
+    "ansFP": 4,
+    "ansCS": 1,
+    "questionText": "Consider the demand curves shown for Coca-Cola. What could explain the shift from D1 to D2?",
+    "answers": [
+      "There has been an increase in the price of Coca-Cola",
+      "There has been a decrease in the price of Coca-Cola",
+      "There has been an increase in the price of Pepsi",
+      "There has been a decrease in the price of Pepsi"
+    ],
+    "correctIndex": 2
+  }
+]
