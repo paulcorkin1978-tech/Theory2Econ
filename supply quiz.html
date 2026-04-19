@@ -61,6 +61,8 @@ body{font-family:'Verdana',sans-serif;background:#f5f4f0;height:100vh;height:100
   #replayBtn{font-size:12px;padding:8px 10px}
   .prog{font-size:11px}
 }
+@keyframes labelFadeIn{from{opacity:0}to{opacity:1}}
+.pm-label-reveal{animation:labelFadeIn 0.9s ease-in forwards}
 @media (max-height:500px){
   #diag-panel{padding:8px;align-items:flex-start}
   #diagWrap svg{max-height:96dvh}
@@ -103,7 +105,7 @@ body{font-family:'Verdana',sans-serif;background:#f5f4f0;height:100vh;height:100
 </div>
 <script>
 const GRID=9,QS=1,QE=9;
-const qs=[{"type":"sc","curve":"supply","title":"Supply of coffee","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#c8a00e","vUnit":2,"hUnit":5,"startFP":3,"startCS":0,"showEqLines":true,"ansFP":4,"ansCS":0,"questionText":"Suppose that the price of coffee increases from $6 per kg to $8 per kg. What should happen to supply?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":2},{"type":"sc","curve":"supply","title":"Supply of labour","yLabel":"Wage ($)","xLabel":"Quantity of labour","color":"#0f6e56","vUnit":4,"hUnit":25,"startFP":5,"startCS":0,"showEqLines":false,"ansFP":5,"ansCS":-1,"questionText":"An increase in the minimum wage raises the cost of labour for a firm. How would this likely impact supply?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":1},{"type":"sc","curve":"supply","title":"Supply of wheat","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#f7a22b","vUnit":1,"hUnit":25,"startFP":5,"startCS":0,"showEqLines":false,"ansFP":5,"ansCS":1,"questionText":"Suppose that wheat and rice are substitute goods. If the price of rice was to decrease on global markets, how would this impact the supply of wheat?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"sc","curve":"supply","title":"Supply of oil","yLabel":"Price ($barrel)","xLabel":"Quantity","color":"#050505","vUnit":15,"hUnit":25,"startFP":5,"startCS":0,"showEqLines":false,"ansFP":5,"ansCS":1,"questionText":"Suppose that new fracking technology opens up new oil reserves. How would this likely impact the supply of oil?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"sc","curve":"supply","title":"Supply of beef","yLabel":"Price ($kgl)","xLabel":"Quantity","color":"#126402","vUnit":1.5,"hUnit":30,"startFP":5,"startCS":0,"showEqLines":false,"ansFP":5,"ansCS":1,"questionText":"Suppose that an economy decides to subsidise its agricultural sector by giving payments to farmers who produce beef. How would this likely affect the supply of beef?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"table","title":"","headers":["Time","Coal ($/Tonne)","Gas ($/GJ)"],"rows":[["Today","150","15"],["Five year's time","165","15"]],"questionText":"Study the table below that shows the expected real price of coal and gas today and in the future. In five year’s time, what would likely happen to the supply of coal?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":2},{"type":"table","title":"","headers":["Time","Coal ($/Tonne)","Gas ($/GJ)"],"rows":[["Today","150","15"],["Five year's time","165","16.5"]],"questionText":"Both coal and gas are expected to increase in price by 10% over the next 5 years. Ceteris paribus, what would likely happen to the supply of gas?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be no change in supply"],"correctIndex":3},{"type":"sc","curve":"supply","title":"Supply of bananas","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#fff70f","vUnit":0.5,"hUnit":20,"startFP":5,"startCS":0,"showEqLines":false,"ansFP":5,"ansCS":-1,"questionText":"Suppose that a tropical cyclone damages the banana crop of an economy. What is the likely impact on supply?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":1},{"type":"sc","curve":"supply","title":"Supply of lithium","yLabel":"Price ($000s / tonne)","xLabel":"Quantity (tonnes)","color":"#2590f4","vUnit":5000,"hUnit":20,"startFP":5,"startCS":0,"showEqLines":false,"ansFP":5,"ansCS":1,"questionText":"In the quest to reduce global CO2 emissions, more firms enter the mining sector to extract lithium for battery production. How would this affect the supply of lithium on global markets?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"table","title":"","headers":["Year","Cigarette tax (as % of retail price)"],"rows":[["1","70"],["2","80"]],"questionText":"Consider the table which shows changes to the tax on cigarettes. How would this likely impact the supply of cigarettes in year 2?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":1}];
+const qs=[{"type":"sc","curve":"supply","title":"Supply of coffee","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#a06e03","vUnit":2,"hUnit":20,"startFP":3,"startCS":0,"showEqLines":true,"ansFP":4,"ansCS":0,"questionText":"Suppose that the price of coffee increases from $6 per kg to $8 per kg. What should happen to supply?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":2},{"type":"sc","curve":"supply","title":"Supply of manufactured goods","yLabel":"Price ($)","xLabel":"Quantity","color":"#9886f3","vUnit":10,"hUnit":30,"startFP":3,"startCS":0,"showEqLines":false,"ansFP":3,"ansCS":-1,"questionText":"An increase in the minimum wage for a manufacturing firm raises the cost of labour for the firm. How would this likely impact the supply of the manufactured good?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":1},{"type":"sc","curve":"supply","title":"Supply of wheat","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#0d8005","vUnit":1,"hUnit":25,"startFP":3,"startCS":0,"showEqLines":false,"ansFP":3,"ansCS":1,"questionText":"Suppose that wheat and rice are related goods that can be substituted in production. If the price of rice was to decrease on global markets, how would this impact the supply of wheat?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"sc","curve":"supply","title":"Supply of oil","yLabel":"Price ($ barrel)","xLabel":"Quantity","color":"#959994","vUnit":20,"hUnit":40,"startFP":3,"startCS":0,"showEqLines":false,"ansFP":3,"ansCS":1,"questionText":"Suppose that new fracking technology opens up new oil reserves. How would this likely impact the supply of oil?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"plain","questionText":"The cost of fertiliser purchased and used by the agricultural industry falls, increasing the supply of crops. Which factor best explains this shift?","answers":["A fall in the price of crops","The provision of a subsidy","Improvement in technology","A decrease in the cost of factors of production"],"correctIndex":3},{"type":"sc","curve":"supply","title":"Supply of tea","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#0f6e56","vUnit":1,"hUnit":40,"startFP":3,"startCS":-1,"showEqLines":false,"ansFP":3,"ansCS":-1,"questionText":"Which of the following factors could explain the shift in the supply of tea from S1 to S2?","answers":["Selective breeding resulting in disease resistant tea plants","An increase in land rents on tea plantations","A decrease in the price of tea","An increase in the number of tea plantations"],"correctIndex":1},{"type":"plain","questionText":"Suppose that an economy decides to subsidise its agricultural sector by giving payments to farmers who produce beef. How would this likely affect the supply of beef?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"table","title":"","headers":["Time","Coal ($ / tonne)","Gas ($ / GJ)"],"rows":[["Today","150","15"],["Five years' time","150","10"]],"questionText":"Study the table below showing the expected real price of coal and gas. In five years' time, what would likely happen to the supply of coal?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"table","title":"","headers":["Time","Coal ($ / tonne)","Gas ($ / GJ)"],"rows":[["Today","150","15"],["Five years' time","165","16.5"]],"questionText":"Consider the same energy sources, but this time both are expected to increase in price by 10% over the next 5 years. Ceteris paribus, what would likely happen to the supply of gas?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be no change in supply"],"correctIndex":3},{"type":"sc","curve":"supply","title":"Supply of bananas","yLabel":"Price ($kg)","xLabel":"Quantity","color":"#f3eb12","vUnit":1,"hUnit":40,"startFP":3,"startCS":0,"showEqLines":false,"ansFP":3,"ansCS":-1,"questionText":"Suppose that a tropical cyclone damages the banana crop of an economy. What is the likely impact on supply?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":1},{"type":"sc","curve":"supply","title":"Supply of petrol cars","yLabel":"Price ($000s)","xLabel":"Quantity","color":"#121212","vUnit":5000,"hUnit":25,"startFP":3,"startCS":-1,"showEqLines":false,"ansFP":3,"ansCS":-1,"questionText":"What could explain the change in the supply of petrol cars from S1 to S2?","answers":["Increased use of robotics in the production of petrol cars","Introduction of a tax on petrol cars","An increase in the number of petrol car manufacturing firms","A reduction in public transport costs"],"correctIndex":1},{"type":"plain","questionText":"In the quest to reduce global CO2 emissions, more firms enter the mining sector to extract lithium for battery production. How would this affect the supply of lithium on global markets?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":0},{"type":"table","title":"","headers":["Year","Cigarette tax (as % of retail price)"],"rows":[["1","70"],["2","80"]],"questionText":"Consider the table below which shows changes to the tax placed on cigarettes. How would this likely impact the supply of cigarettes in year 2?","answers":["There will be an increase in supply","There will be a decrease in supply","There will be an expansion in supply","There will be a contraction in supply"],"correctIndex":1},{"type":"plain","questionText":"Which of the following changes in the factors of production would increase supply?","answers":["A decrease in the productivity of labour","A rise in the price of raw materials","An improvement in new technology","A reduction in the size of the workforce"],"correctIndex":2},{"type":"sc","curve":"supply","title":"Supply of mobile phones","yLabel":"Price ($)","xLabel":"Quantity","color":"#f50511","vUnit":200,"hUnit":40,"startFP":5,"startCS":0,"showEqLines":true,"ansFP":4,"ansCS":0,"questionText":"Suppose that the price of mobile phones fell by 20%. Given the curve shown, what would be the result in the supply of mobile phones?","answers":["A decrease in supply 40 mobile phones","An increase in supply 40 mobile phones","A contraction in supply 40 mobile phones","An expansion in supply of 40 mobile phones"],"correctIndex":2}];
 let cur=0;
 const done=new Array(qs.length).fill(false);
 const curPos=qs.map(q=>{
@@ -127,7 +129,7 @@ function clip(qA,pA,qB,pB,pad,W,H,pMin=0){
   if(t0>=t1)return null;
   return{x1:gxF(qA+t0*dq,pad,W),y1:gyF(pA+t0*dp,pad,H),x2:gxF(qA+t1*dq,pad,W),y2:gyF(pA+t1*dp,pad,H)};
 }
-function mkSVG(q,dA,sA,fpA,isAnimating){
+function mkSVG(q,dA,sA,fpA,isAnimating,shiftDirD=0,shiftDirS=0,animT=0,showStaticBracket=false){
   if(q.type==='plain')return'';
   if(q.type==='table'){
     const xe=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -237,6 +239,26 @@ function mkSVG(q,dA,sA,fpA,isAnimating){
         }
       }
     }
+    if(isAnimating){
+      const arrowOp=(animT<0.9?animT/0.9:animT>0.95?(1-animT)/0.05:1).toFixed(2);
+      const buf=7;
+      if(shiftDirD!==0){
+        // At P=6: Q on demand curve = 10-6+2*shift = 4+2*shift → x1 sits exactly on D1, x2 on D2
+        const x1=gx(Math.max(QS,4+2*(q.startDS||0))),x2=gx(Math.min(QE-0.3,Math.max(QS+0.3,4+2*dA))),ay=gy(6);
+        if(Math.abs(x2-x1)>buf*2+4){
+          const d=x2>=x1?1:-1;
+          s+=`<line x1="${x1+buf*d}" y1="${ay}" x2="${x2-buf*d}" y2="${ay}" stroke="${q.dColor}" stroke-width="2.5" marker-end="url(#arr)" stroke-linecap="round" opacity="${arrowOp}"/>`;
+        }
+      }
+      if(shiftDirS!==0){
+        // At P=4: Q on supply curve = 4+2*shift → x1 sits exactly on S1, x2 on S2
+        const x1=gx(Math.max(QS,4+2*(q.startSS||0))),x2=gx(Math.min(QE-0.3,Math.max(QS+0.3,4+2*sA))),ay=gy(4);
+        if(Math.abs(x2-x1)>buf*2+4){
+          const d=x2>=x1?1:-1;
+          s+=`<line x1="${x1+buf*d}" y1="${ay}" x2="${x2-buf*d}" y2="${ay}" stroke="${q.sColor}" stroke-width="2.5" marker-end="url(#arr)" stroke-linecap="round" opacity="${arrowOp}"/>`;
+        }
+      }
+    }
   } else if(q.type==='pm'){
     // ── Price Mechanism ──────────────────────────────────────────────────────
     // fpA carries the animated current price; dA/sA are fixed curve positions.
@@ -293,16 +315,27 @@ function mkSVG(q,dA,sA,fpA,isAnimating){
       // Vertical dotted lines from intersections
       if(qd_>=QS&&qd_<=QE) s+=`<line x1="${xQd_}" y1="${py_}" x2="${xQd_}" y2="${H-pad.b}" stroke="#888" stroke-width="1" stroke-dasharray="4,3" opacity="0.45"/>`;
       if(qs_>=QS&&qs_<=QE) s+=`<line x1="${xQs_}" y1="${py_}" x2="${xQs_}" y2="${H-pad.b}" stroke="#888" stroke-width="1" stroke-dasharray="4,3" opacity="0.45"/>`;
-      // Bracket + label — only shown during animation (hidden in static student view)
-      if(isAnimating&&xR_-xL_>5&&fade_>0.02){
-        const arm_=hasSurplus_?-16:16,barY_=py_+arm_,op_=fade_.toFixed(2);
-        s+=`<line x1="${xL_}" y1="${py_}" x2="${xL_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5" opacity="${op_}"/>`;
-        s+=`<line x1="${xR_}" y1="${py_}" x2="${xR_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5" opacity="${op_}"/>`;
-        s+=`<line x1="${xL_}" y1="${barY_}" x2="${xR_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5" opacity="${op_}"/>`;
-        const tip_=hasSurplus_?py_+9:py_-9;
-        s+=`<line x1="${xM_}" y1="${barY_}" x2="${xM_}" y2="${tip_}" stroke="${bracketCol_}" stroke-width="1.5" marker-end="url(#arr)" opacity="${op_}"/>`;
-        const lblY_=hasSurplus_?barY_-12:barY_+12;
-        s+=`<text x="${xM_}" y="${lblY_}" text-anchor="middle" font-size="${fs}" font-family="Verdana" font-weight="bold" fill="${bracketCol_}" opacity="${op_}">${lbl_}</text>`;
+      // Bracket + label — shown during animation OR when answer revealed (showStaticBracket)
+      const showBrk_=(isAnimating&&xR_-xL_>5&&fade_>0.02)||showStaticBracket;
+      if(showBrk_){
+        const arm_=hasSurplus_?-16:16,barY_=py_+arm_;
+        const tip_=hasSurplus_?py_+9:py_-9,lblY_=hasSurplus_?barY_-12:barY_+12;
+        if(showStaticBracket){
+          s+=`<g class="pm-label-reveal">`;
+          s+=`<line x1="${xL_}" y1="${py_}" x2="${xL_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5"/>`;
+          s+=`<line x1="${xR_}" y1="${py_}" x2="${xR_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5"/>`;
+          s+=`<line x1="${xL_}" y1="${barY_}" x2="${xR_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5"/>`;
+          s+=`<line x1="${xM_}" y1="${barY_}" x2="${xM_}" y2="${tip_}" stroke="${bracketCol_}" stroke-width="1.5" marker-end="url(#arr)"/>`;
+          s+=`<text x="${xM_}" y="${lblY_}" text-anchor="middle" font-size="${fs}" font-family="Verdana" font-weight="bold" fill="${bracketCol_}">${lbl_}</text>`;
+          s+=`</g>`;
+        } else {
+          const op_=fade_.toFixed(2);
+          s+=`<line x1="${xL_}" y1="${py_}" x2="${xL_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5" opacity="${op_}"/>`;
+          s+=`<line x1="${xR_}" y1="${py_}" x2="${xR_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5" opacity="${op_}"/>`;
+          s+=`<line x1="${xL_}" y1="${barY_}" x2="${xR_}" y2="${barY_}" stroke="${bracketCol_}" stroke-width="1.5" opacity="${op_}"/>`;
+          s+=`<line x1="${xM_}" y1="${barY_}" x2="${xM_}" y2="${tip_}" stroke="${bracketCol_}" stroke-width="1.5" marker-end="url(#arr)" opacity="${op_}"/>`;
+          s+=`<text x="${xM_}" y="${lblY_}" text-anchor="middle" font-size="${fs}" font-family="Verdana" font-weight="bold" fill="${bracketCol_}" opacity="${op_}">${lbl_}</text>`;
+        }
       }
       // Y-axis price label
       s+=`<text x="${pad.l-4}" y="${py_}" text-anchor="end" dominant-baseline="central" font-size="${fs2}" font-family="Verdana" fill="#444" font-weight="bold">${fmt(fpA*vDisp)}</text>`;
@@ -354,6 +387,19 @@ function mkSVG(q,dA,sA,fpA,isAnimating){
         }
       }
     }
+    if(isAnimating&&(shiftDirD!==0||shiftDirS!==0)){
+      const activeShift=q.curve==='demand'?dA:sA;
+      const startShift=q.startCS||0;
+      // At P=6 demand: Q=10-6+2*shift=4+2*shift; at P=4 supply: Q=4+2*shift
+      // x1 sits exactly on D1/S1, x2 grows to D2/S2 during animation
+      const x1=gx(Math.max(QS,4+2*startShift)),x2=gx(Math.min(QE-0.3,Math.max(QS+0.3,4+2*activeShift)));
+      const ay=q.curve==='demand'?gy(6):gy(4);
+      const arrowOp=(animT<0.9?animT/0.9:animT>0.95?(1-animT)/0.05:1).toFixed(2);
+      const buf=7,d=x2>=x1?1:-1;
+      if(Math.abs(x2-x1)>buf*2+4){
+        s+=`<line x1="${x1+buf*d}" y1="${ay}" x2="${x2-buf*d}" y2="${ay}" stroke="${q.color}" stroke-width="2.5" marker-end="url(#arr)" stroke-linecap="round" opacity="${arrowOp}"/>`;
+      }
+    }
   }
   return `<svg width="100%" viewBox="0 0 ${W} ${H}">${s}</svg>`;
 }
@@ -364,7 +410,11 @@ function showQ(i){
   document.getElementById('qnum').textContent='Question '+(i+1)+' of '+qs.length;
   document.getElementById('qtext').textContent=q.questionText;
   document.getElementById('app').classList.toggle('plain-q',q.type==='plain');
-  document.getElementById('diagWrap').innerHTML=mkSVG(q,pos.dA,pos.sA,pos.fpA);
+  const isStaticPM_=done[i]&&q.type==='pm'&&q.animatePrice===false;
+  const dA_=isStaticPM_?(q.dShift||0):pos.dA;
+  const sA_=isStaticPM_?(q.sShift||0):pos.sA;
+  const fpA_=isStaticPM_?(q.startPrice||5):pos.fpA;
+  document.getElementById('diagWrap').innerHTML=mkSVG(q,dA_,sA_,fpA_,false,0,0,0,isStaticPM_);
   const rb=document.getElementById('replayBtn');
   if(rb) rb.style.display=(q.type==='plain'||q.type==='table')?'none':'';
   const abtns=document.getElementById('abtns');
@@ -391,14 +441,19 @@ function go(qi,ai){
     btns.forEach((b,i)=>{b.classList.add(i===ai?'correct':'used');});
     fb.textContent='✓ Correct!';fb.className='fb c';
     document.getElementById('prog').textContent=(qi+1)+' of '+qs.length+' · ✓';
-    anim(qi);
+    if(q.type==='pm'&&q.animatePrice===false){
+      // Fade in the surplus/shortage label — no price animation
+      document.getElementById('diagWrap').innerHTML=mkSVG(q,q.dShift||0,q.sShift||0,q.startPrice||5,false,0,0,0,true);
+    }else{
+      anim(qi);
+    }
   } else {
     btns[ai].classList.add('wrong');
     fb.textContent='✗ Try again';fb.className='fb w';
     setTimeout(()=>{btns[ai].classList.remove('wrong');fb.textContent='';fb.className='fb';},1400);
   }
 }
-function anim(qi){
+function anim(qi,animDur=700){
   if(qi!==cur)return;
   const q=qs[qi];
   if(q.type==='plain'||q.type==='table')return;
@@ -408,7 +463,7 @@ function anim(qi){
     const eq_=getEq(q.dShift||0,q.sShift||0);
     const dA_=q.dShift||0,sA_=q.sShift||0;
     const fromP_=q.startPrice||5,toP_=eq_.p;
-    const start_=performance.now(),dur_=2600;
+    const start_=performance.now(),dur_=animDur>700?animDur*1.5:2600;
     function stepPM(now){
       if(qi!==cur)return;
       const t=Math.min((now-start_)/dur_,1),e=t<0.5?2*t*t:-1+(4-2*t)*t;
@@ -432,13 +487,14 @@ function anim(qi){
     else{tD=0;tS=q.ansCS||0;fromD=0;fromS=q.startCS||0;}
   }
   const tFP=q.ansFP||(q.startFP||5),sFP=q.startFP||5;
-  const start=performance.now(),dur=700;
+  const dirD=Math.sign(tD-fromD),dirS=Math.sign(tS-fromS);
+  const start=performance.now(),dur=animDur;
   function step(now){
     if(qi!==cur)return;
     const t=Math.min((now-start)/dur,1),e=t<0.5?2*t*t:-1+(4-2*t)*t;
     const dA=fromD+(tD-fromD)*e,sA=fromS+(tS-fromS)*e,fpA=sFP+(tFP-sFP)*e;
     curPos[qi]={dA,sA,fpA};
-    el.innerHTML=mkSVG(q,dA,sA,fpA,t<1);
+    el.innerHTML=mkSVG(q,dA,sA,fpA,t<1,dirD,dirS,t);
     if(t<1)requestAnimationFrame(step);
     else curPos[qi]={dA:tD,sA:tS,fpA:tFP};
   }
@@ -451,8 +507,13 @@ function replayAnim(){
   else if(q.type==='sc') curPos[cur]={dA:q.curve==='demand'?(q.startCS||0):0,sA:q.curve==='supply'?(q.startCS||0):0,fpA:q.startFP||5};
   else if(q.type==='pm') curPos[cur]={dA:q.dShift||0,sA:q.sShift||0,fpA:q.startPrice||5};
   else curPos[cur]={dA:0,sA:0,fpA:q.startFP||5};
-  document.getElementById('diagWrap').innerHTML=mkSVG(q,curPos[cur].dA,curPos[cur].sA,curPos[cur].fpA,false);
-  if(done[cur])anim(cur);
+  if(done[cur]&&q.type==='pm'&&q.animatePrice===false){
+    // Label-reveal mode: just re-trigger the fade-in, no price animation
+    document.getElementById('diagWrap').innerHTML=mkSVG(q,q.dShift||0,q.sShift||0,q.startPrice||5,false,0,0,0,true);
+  }else{
+    document.getElementById('diagWrap').innerHTML=mkSVG(q,curPos[cur].dA,curPos[cur].sA,curPos[cur].fpA,false);
+    if(done[cur])anim(cur,3000);
+  }
 }
 function prev(){if(cur>0)showQ(cur-1);}
 function next(){
