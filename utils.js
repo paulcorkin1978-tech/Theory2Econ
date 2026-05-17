@@ -6,14 +6,22 @@ const W = 300, H = 270, PAD = {l:36, r:28, t:22, b:30};
 // ── MATH HELPERS ──────────────────────────────────────────────────────────────
 function fmt(n) { return Math.round(n * 100) / 100; }
 
-// Supply & Demand price/quantity functions
-function dPf(q, ds) { return 10 - q + ds * 2; }   // Demand: price as fn of qty
-function sPf(q, ss) { return q - ss * 2; }          // Supply: price as fn of qty
-function dQf(p, ds) { return 10 - p + ds * 2; }    // Demand: qty as fn of price
-function sQf(p, ss) { return p + ss * 2; }          // Supply: qty as fn of price
-function getEq(ds, ss) {                             // Equilibrium point
-  const q = (10 + ds * 2 + ss * 2) / 2;
-  return { q, p: q - ss * 2 };
+// Supply & Demand price/quantity functions.
+// dm  = demand slope multiplier (1=normal, 2=inelastic 2:1, 0.5=elastic 1:2).
+// dsc = demand shift coefficient per step (default 2 = legacy SD builder behaviour).
+// ssc = supply shift coefficient per step (default 2 = legacy SD builder behaviour).
+// Tax builder passes dsc=dm, ssc=1 so every button press moves the curve exactly 1 grid square.
+// All variants pass through (5,5) when ds=ss=0.
+function dPf(q, ds, dm=1, dsc=2) { return 5*(1+dm) - dm*q + dsc*ds; }
+function sPf(q, ss, ssc=2)        { return q - ssc*ss; }
+function dQf(p, ds, dm=1, dsc=2) { return (5*(1+dm) - p + dsc*ds) / dm; }
+function sQf(p, ss, ssc=2)        { return p + ssc*ss; }
+function getEq(ds, ss, dm=1, dsc=2, ssc=2) {
+  // demand at price p:  q = (5*(1+dm) - p + dsc*ds) / dm
+  // supply at price p:  q = p + ssc*ss
+  // equate → p*(1+dm) = 5*(1+dm) + dsc*ds - dm*ssc*ss
+  const p = (5*(1+dm) + dsc*ds - dm*ssc*ss) / (1+dm);
+  return { p, q: p + ssc*ss };
 }
 
 // Convert grid coordinates to SVG pixel coordinates
@@ -49,7 +57,8 @@ function getYLbl(id, vU) {
 function buildSVGInner(cfg) {
   const { W, H, pad, title, yLbl, xLbl, vU, hU, type, dCol, sCol, col,
           curve, dA, sA, fpA, startDS, startSS, startCS, showFaded, isAnimating,
-          showEqLines = true } = cfg;
+          showEqLines = true, showEqLabel = true,
+          dMult = 1, dShiftCoeff = 2, sShiftCoeff = 2 } = cfg;
   const gx = q => gxF(q, pad, W);
   const gy = p => gyF(p, pad, H);
   const fs = 11, fs2 = 9;
@@ -78,12 +87,13 @@ function buildSVGInner(cfg) {
 
   if (type === 'sd') {
     // ── Supply & Demand ──
-    const eq = getEq(dA, sA);
+    const eq = getEq(dA, sA, dMult, dShiftCoeff, sShiftCoeff);
 
-    // Axis tick labels (hide values that overlap equilibrium point, only when eq marker is visible)
+    // Axis tick labels (hide values that overlap equilibrium point, only when the numeric
+    // label is actually being drawn — suppressing when showEqLabel=false leaves a blank gap)
     for (let i = 1; i <= GRID; i++) {
-      const eP = showEqLines && Math.abs(i - eq.p) < 0.05;
-      const eQ = showEqLines && Math.abs(i - eq.q) < 0.05;
+      const eP = showEqLines && showEqLabel && Math.abs(i - eq.p) < 0.05;
+      const eQ = showEqLines && showEqLabel && Math.abs(i - eq.q) < 0.05;
       if (!eP) s += `<text x="${pad.l-4}" y="${gy(i)}" text-anchor="end" dominant-baseline="central" font-size="${fs2}" font-family="Verdana" fill="#888">${fmt(i*vDisp)}</text>`;
       if (!eQ) s += `<text x="${gx(i)}" y="${H-pad.b+11}" text-anchor="middle" font-size="${fs2}" font-family="Verdana" fill="#888">${fmt(i*hDisp)}</text>`;
     }
@@ -97,19 +107,19 @@ function buildSVGInner(cfg) {
     const dShifted = dA !== 0, sShifted = sA !== 0;
     if (showFaded) {
       if (dShifted) {
-        const cd = clipLine(QS, dPf(QS, 0), QE, dPf(QE, 0), pad, W, H, 1);
+        const cd = clipLine(QS, dPf(QS, 0, dMult, dShiftCoeff), QE, dPf(QE, 0, dMult, dShiftCoeff), pad, W, H, 1);
         if (cd) s += `<line x1="${cd.x1}" y1="${cd.y1}" x2="${cd.x2}" y2="${cd.y2}" stroke="${dCol}" stroke-width="2" stroke-linecap="round" opacity="0.3"/><text x="${cd.x2+4}" y="${cd.y2}" dominant-baseline="central" font-size="${fs}" font-family="Verdana" fill="${dCol}" opacity="0.3" font-weight="bold">D1</text>`;
       }
       if (sShifted) {
-        const cs = clipLine(QS, sPf(QS, 0), QE, sPf(QE, 0), pad, W, H);
+        const cs = clipLine(QS, sPf(QS, 0, sShiftCoeff), QE, sPf(QE, 0, sShiftCoeff), pad, W, H);
         if (cs) s += `<line x1="${cs.x1}" y1="${cs.y1}" x2="${cs.x2}" y2="${cs.y2}" stroke="${sCol}" stroke-width="2" stroke-linecap="round" opacity="0.3"/><text x="${cs.x2+4}" y="${Math.min(cs.y1,cs.y2)}" dominant-baseline="central" font-size="${fs}" font-family="Verdana" fill="${sCol}" opacity="0.3" font-weight="bold">S1</text>`;
       }
     }
 
     // Active curves — labelled by absolute position (D1 at origin, D2 shifted)
     const dl = dA === 0 ? 'D1' : 'D2', sl = sA === 0 ? 'S1' : 'S2';
-    const cd = clipLine(QS, dPf(QS, dA), QE, dPf(QE, dA), pad, W, H, 1);
-    const cs = clipLine(QS, sPf(QS, sA), QE, sPf(QE, sA), pad, W, H);
+    const cd = clipLine(QS, dPf(QS, dA, dMult, dShiftCoeff), QE, dPf(QE, dA, dMult, dShiftCoeff), pad, W, H, 1);
+    const cs = clipLine(QS, sPf(QS, sA, sShiftCoeff), QE, sPf(QE, sA, sShiftCoeff), pad, W, H);
     if (cd) s += `<line x1="${cd.x1}" y1="${cd.y1}" x2="${cd.x2}" y2="${cd.y2}" stroke="${dCol}" stroke-width="2.5" stroke-linecap="round"/><text x="${cd.x2+4}" y="${cd.y2}" dominant-baseline="central" font-size="${fs}" font-family="Verdana" fill="${dCol}" font-weight="bold">${dl}</text>`;
     if (cs) s += `<line x1="${cs.x1}" y1="${cs.y1}" x2="${cs.x2}" y2="${cs.y2}" stroke="${sCol}" stroke-width="2.5" stroke-linecap="round"/><text x="${cs.x2+4}" y="${Math.min(cs.y1,cs.y2)}" dominant-baseline="central" font-size="${fs}" font-family="Verdana" fill="${sCol}" font-weight="bold">${sl}</text>`;
 
@@ -120,7 +130,7 @@ function buildSVGInner(cfg) {
         s += `<line x1="${pad.l}" y1="${ey}" x2="${ex}" y2="${ey}" stroke="#888" stroke-width="1" stroke-dasharray="5,4"/>`;
         s += `<line x1="${ex}" y1="${H-pad.b}" x2="${ex}" y2="${ey}" stroke="#888" stroke-width="1" stroke-dasharray="5,4"/>`;
         s += `<circle cx="${ex}" cy="${ey}" r="6" fill="#D85A30" stroke="white" stroke-width="2"/>`;
-        if (!isAnimating) {
+        if (!isAnimating && showEqLabel) {
           s += `<text x="${pad.l-4}" y="${ey}" text-anchor="end" dominant-baseline="central" font-size="${fs2}" font-family="Verdana" fill="#D85A30" font-weight="bold">${fmt(eq.p*vDisp)}</text>`;
           s += `<text x="${ex}" y="${H-pad.b+11}" text-anchor="middle" font-size="${fs2}" font-family="Verdana" fill="#D85A30" font-weight="bold">${fmt(eq.q*hDisp)}</text>`;
         }
